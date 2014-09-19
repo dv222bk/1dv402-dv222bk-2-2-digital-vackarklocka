@@ -25,52 +25,83 @@ namespace _1DV402.S2.L2C
         {
             get
             {
-
+                
             }
             set
             {
 
             }
         }
-        AlarmClock()
+        public AlarmClock()
         {
 
         }
-        AlarmClock(int hour, int minute)
+        public AlarmClock(int hour, int minute)
         {
 
         }
-        AlarmClock(int hour, int minute, int alarmHour, int alarmMinute)
+        public AlarmClock(int hour, int minute, int alarmHour, int alarmMinute)
         {
 
         }
-        AlarmClock(string time, params string[] alarmTimes)
+        public AlarmClock(string time, params string[] alarmTimes)
         {
 
         }
-        bool Equals(object obj)
+        public override bool Equals(object obj)
         {
-
+            // Check for null
+            if (obj == null)
+            {
+                return false;
+            }
+            // Equivalent data types. Can be avoided if type is sealed.
+            if (this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+            // Compare hashcodes
+            return (this.GetHashCode() == obj.GetHashCode());
         }
-        int GetHashCode()
+        public override int GetHashCode()
         {
-
+            return ToString().GetHashCode();
         }
-        bool operator !=(AlarmClock a, AlarmClock b)
+        public static bool operator !=(AlarmClock a, AlarmClock b)
         {
-
+            if (ReferenceEquals(a, null))
+            {
+                return !(ReferenceEquals(b, null));
+            }
+            return !a.Equals(b);
         }
-        bool operator ==(AlarmClock a, AlarmClock b)
+        public static bool operator ==(AlarmClock a, AlarmClock b)
         {
-
+            if (ReferenceEquals(a, null))
+            {
+                return ReferenceEquals(b, null);
+            }
+            return a.Equals(b);
         }
-        public bool TickTack()
+        public bool TickTock()
         {
-
+            for (int i = 0; i < _alarmTimes.Length; i++)
+            {
+                if (_time == _alarmTimes[i])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
-        public string ToString()
+        public override string ToString()
         {
-
+            string toString = _time.Time;
+            for (int i = 0; i < _alarmTimes.Length; i++)
+            {
+                toString += "\"" + _alarmTimes[i].Time + "\"";
+            }
+            return toString;
         }
     }
 }

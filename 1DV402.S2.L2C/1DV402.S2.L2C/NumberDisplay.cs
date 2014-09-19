@@ -32,38 +32,63 @@ namespace _1DV402.S2.L2C
 
             }
         }
-        bool Equals(object obj)
+        public override bool Equals(object obj)
         {
-
+            // Check for null
+            if (obj == null)
+            {
+                return false;
+            }
+            // Equivalent data types. Can be avoided if type is sealed.
+            if (this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+            // Compare hashcodes
+            return (this.GetHashCode() == obj.GetHashCode());
         }
-        int GetHashCode()
+        public override int GetHashCode()
         {
-
+            int hashCode = _maxNumber.GetHashCode();
+            hashCode ^= _number.GetHashCode();
+            return hashCode;
         }
         public void Increment()
         {
-
+            _number++;
+            if (_number > _maxNumber)
+            {
+                _number = 0;
+            }
         }
-        NumberDisplay(int maxNumber)
+        public NumberDisplay(int maxNumber)
         {
 
         }
-        NumberDispaly(int maxNumber, int number){
+        public NumberDisplay(int maxNumber, int number){
 
         }
-        bool operator !=(NumberDisplay a, NumberDisplay b)
+        public static bool operator !=(NumberDisplay a, NumberDisplay b)
         {
-        
+            if (ReferenceEquals(a, null))
+            {
+                return !(ReferenceEquals(b, null));
+            }
+            return !a.Equals(b);
         }
-        bool operator ==(NumberDisplay a, NumberDisplay b)
+        public static bool operator ==(NumberDisplay a, NumberDisplay b)
+        {
+            if (ReferenceEquals(a, null))
+            {
+                return ReferenceEquals(b, null);
+            }
+            return a.Equals(b);
+        }
+        public override string ToString()
         {
 
         }
-        public string ToString()
-        {
-
-        }
-        public string ToString(string format)
+        public override string ToString(string format)
         {
 
         }

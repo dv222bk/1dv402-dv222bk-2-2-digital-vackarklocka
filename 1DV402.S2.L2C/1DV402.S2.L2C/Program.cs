@@ -8,6 +8,7 @@ namespace _1DV402.S2.L2C
 {
     class Program
     {
+        private string HorizontalLine;
         static void Main(string[] args)
         {
 
@@ -18,7 +19,10 @@ namespace _1DV402.S2.L2C
         }
         private static void ViewErrorMessage(string message)
         {
-
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
         private static void ViewTestHeader(string header)
         {
