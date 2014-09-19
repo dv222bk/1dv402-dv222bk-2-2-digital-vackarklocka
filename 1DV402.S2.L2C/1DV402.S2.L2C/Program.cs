@@ -10,6 +10,19 @@ namespace _1DV402.S2.L2C
     {
         static void Main(string[] args)
         {
+
+        }
+        private static void Run(AlarmClock ac, int minutes)
+        {
+
+        }
+        private static void ViewErrorMessage(string message)
+        {
+
+        }
+        private static void ViewTestHeader(string header)
+        {
+
         }
     }
 }
