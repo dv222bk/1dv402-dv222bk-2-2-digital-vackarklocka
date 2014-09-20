@@ -100,18 +100,25 @@ namespace _1DV402.S2.L2C
             Console.ResetColor();
             int minute = 0;
             string[] alarmTimes = ac.AlarmTimes;
+            bool result;
             do
             {
-                if (ac.TickTock())
+                result = ac.TickTock();
+                int formating = ac.ToString().Length + 2;
+                if (result)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkBlue;
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(" ♫  " + ac.ToString() + "   BEEP! BEEP! BEEP! BEEP!");
+                    Console.WriteLine(string.Format(" ♫{0, " + formating + "}   BEEP! BEEP! BEEP! BEEP!", ac.ToString()));
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.WriteLine(ac.ToString());
+                    if (ac.Time.Length < 5)
+                    {
+                        formating++;
+                    }
+                    Console.WriteLine(string.Format(" {0, " + formating + "}", ac.ToString()));
                 }
                 minute++;
             } while (minute < minutes);
