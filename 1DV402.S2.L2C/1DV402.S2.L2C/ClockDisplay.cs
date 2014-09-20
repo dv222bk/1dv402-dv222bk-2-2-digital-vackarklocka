@@ -15,7 +15,7 @@ namespace _1DV402.S2.L2C
         {
             get
             {
-                return _hourDisplay.Number + ":" + _minuteDisplay;
+                return _hourDisplay.ToString("G") + ":" + _minuteDisplay.ToString("00");
             }
             set
             {
@@ -33,18 +33,15 @@ namespace _1DV402.S2.L2C
                 }
             }
         }
-        public ClockDisplay()
-        {
-            new ClockDisplay(0, 0);
-        }
+        public ClockDisplay() : this(0, 0) { }
         public ClockDisplay(int hour, int minute)
         {
-            _hourDisplay = new NumberDisplay(24, hour);
+            _hourDisplay = new NumberDisplay(23, hour);
             _minuteDisplay = new NumberDisplay(59, minute);
         }
         public ClockDisplay(string time)
         {
-            _hourDisplay = new NumberDisplay(24);
+            _hourDisplay = new NumberDisplay(23);
             _minuteDisplay = new NumberDisplay(59);
             Time = time;
         }

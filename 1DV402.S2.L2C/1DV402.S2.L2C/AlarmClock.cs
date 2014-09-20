@@ -38,17 +38,11 @@ namespace _1DV402.S2.L2C
             }
             set
             {
-                _time.Time = value;
+                _time = new ClockDisplay(value);
             }
         }
-        public AlarmClock()
-        {
-            new AlarmClock(0, 0);
-        }
-        public AlarmClock(int hour, int minute)
-        {
-            new AlarmClock(hour, minute, 0, 0);
-        }
+        public AlarmClock() : this(0, 0) { }
+        public AlarmClock(int hour, int minute) : this(hour, minute, 0, 0) { }
         public AlarmClock(int hour, int minute, int alarmHour, int alarmMinute)
         {
             _alarmTimes = new ClockDisplay[1] { new ClockDisplay(alarmHour, alarmMinute) };
@@ -96,6 +90,7 @@ namespace _1DV402.S2.L2C
         }
         public bool TickTock()
         {
+            _time.Increment();
             for (int i = 0; i < _alarmTimes.Length; i++)
             {
                 if (_time == _alarmTimes[i])
@@ -107,11 +102,17 @@ namespace _1DV402.S2.L2C
         }
         public override string ToString()
         {
-            string toString = _time.Time;
+            string toString = Time;
+            toString += " (";
             for (int i = 0; i < _alarmTimes.Length; i++)
             {
-                toString += "\"" + _alarmTimes[i].Time + "\"";
+                toString += _alarmTimes[i].Time;
+                if (i + 1 < _alarmTimes.Length)
+                {
+                    toString += ", ";
+                }
             }
+            toString += ")";
             return toString;
         }
     }

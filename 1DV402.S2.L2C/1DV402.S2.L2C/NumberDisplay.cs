@@ -37,7 +37,7 @@ namespace _1DV402.S2.L2C
             }
             set
             {
-                if (value > 0 && value <= _maxNumber)
+                if (value >= 0 && value <= _maxNumber)
                 {
                     _number = value;
                 }
@@ -76,10 +76,7 @@ namespace _1DV402.S2.L2C
                 _number = 0;
             }
         }
-        public NumberDisplay(int maxNumber)
-        {
-            new NumberDisplay(maxNumber, 0);
-        }
+        public NumberDisplay(int maxNumber) : this (maxNumber, 0) { }
         public NumberDisplay(int maxNumber, int number){
             MaxNumber = maxNumber;
             Number = number;
@@ -104,7 +101,7 @@ namespace _1DV402.S2.L2C
         {
             return _number.ToString();
         }
-        public override string ToString(string format)
+        public string ToString(string format)
         {
             Regex regex = new Regex("0{2}|0|G");
             Match match = regex.Match(format);
