@@ -14,39 +14,50 @@ namespace _1DV402.S2.L2C
         {
             get
             {
-
+                string[] alarmTimes = new string[_alarmTimes.Length];
+                for (int i = 0; i < _alarmTimes.Length; i++)
+                {
+                    alarmTimes[i] = _alarmTimes[i].ToString();
+                }
+                return alarmTimes;
             }
             set
             {
-
+                _alarmTimes = new ClockDisplay[value.Length];
+                for (int i = 0; i < value.Length; i++)
+                {
+                    _alarmTimes[i] = new ClockDisplay(value[i]);
+                }
             }
         }
         public string Time
         {
             get
             {
-                
+                return _time.ToString();
             }
             set
             {
-
+                _time.Time = value;
             }
         }
         public AlarmClock()
         {
-
+            new AlarmClock(0, 0);
         }
         public AlarmClock(int hour, int minute)
         {
-
+            new AlarmClock(hour, minute, 0, 0);
         }
         public AlarmClock(int hour, int minute, int alarmHour, int alarmMinute)
         {
-
+            _alarmTimes = new ClockDisplay[1] { new ClockDisplay(alarmHour, alarmMinute) };
+            _time = new ClockDisplay(hour, minute);
         }
         public AlarmClock(string time, params string[] alarmTimes)
         {
-
+            AlarmTimes = alarmTimes;
+            _time = new ClockDisplay(time);
         }
         public override bool Equals(object obj)
         {

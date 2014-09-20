@@ -35,8 +35,7 @@ namespace _1DV402.S2.L2C
         }
         public ClockDisplay()
         {
-            _hourDisplay = new NumberDisplay(24, 0);
-            _minuteDisplay = new NumberDisplay(59, 0);
+            new ClockDisplay(0, 0);
         }
         public ClockDisplay(int hour, int minute)
         {
@@ -70,7 +69,11 @@ namespace _1DV402.S2.L2C
         }
         public void Increment()
         {
-
+            _minuteDisplay.Increment();
+            if (_minuteDisplay.Number == 0)
+            {
+                _hourDisplay.Increment();
+            }
         }
         public static bool operator !=(ClockDisplay a, ClockDisplay b)
         {
