@@ -44,12 +44,46 @@ namespace _1DV402.S2.L2C
 
             //Test7
             ViewTestHeader("Test 7.\nTestar egenskaperna så att undantag kastas då tid och alarmtid tilldelas felaktiga värden.");
-            test.Time = "24:89";
-            test.AlarmTimes = new[] { "7:69" };
+            try
+            {
+                test.Time = "24:89";
+            }
+            catch (FormatException ex)
+            {
+                ViewErrorMessage(string.Format("Strängen '{0}' kan inte tolkas som en tid på formatet HH:mm", ex.Message));
+            }
+            try
+            {
+                test.AlarmTimes = new[] { "7:69" };
+            }
+            catch (FormatException ex)
+            {
+                ViewErrorMessage(string.Format("Strängen '{0}' kan inte tolkas som en tid på formatet HH:mm", ex.Message));
+            }
 
             //Test8
-            ViewTestHeader("Test 8.\nTestar konstruktorer så att undantag kastas då tid och alarmtid tilldelas felaktiga värden");
-            test = new AlarmClock(32, 03, 27, 00);
+            ViewTestHeader("Test 8.\nTestar konstruktorer så att undantag kastas då tid och alarmtid tilldelas felaktiga värden.");
+            try
+            {
+                test = new AlarmClock(32, 03, 0, 0);
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(string.Format("Strängen '{0}' kan inte tolkas som en tid på formatet HH", ex.Message));
+            }
+            try
+            {
+                test = new AlarmClock(0, 0, 27, 00);
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(string.Format("Strängen '{0}' kan inte tolkas som en tid på formatet HH", ex.Message));
+            }
+
+            //Test9
+            ViewTestHeader("Test 9 (extra).\nTestar ifall flera alarmtider kan aktiveras under en och samma körning");
+            test = new AlarmClock("7:07", new[] { "7:09", "7:11", "7:14" });
+            Run(test, 8);
         }
         private static void Run(AlarmClock ac, int minutes)
         {
@@ -72,7 +106,7 @@ namespace _1DV402.S2.L2C
                 {
                     Console.BackgroundColor = ConsoleColor.DarkBlue;
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("♫ " + ac.ToString() + "   BEEP! BEEP! BEEP! BEEP!");
+                    Console.WriteLine(" ♫  " + ac.ToString() + "   BEEP! BEEP! BEEP! BEEP!");
                     Console.ResetColor();
                 }
                 else

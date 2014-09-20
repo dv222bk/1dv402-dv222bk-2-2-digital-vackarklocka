@@ -25,7 +25,7 @@ namespace _1DV402.S2.L2C
                 }
                 else
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException(value.ToString());
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace _1DV402.S2.L2C
                 }
                 else
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException(value.ToString());
                 }
             }
         }

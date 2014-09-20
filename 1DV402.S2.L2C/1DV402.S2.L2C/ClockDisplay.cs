@@ -29,7 +29,7 @@ namespace _1DV402.S2.L2C
                 }
                 else
                 {
-                    throw new FormatException();
+                    throw new FormatException(value);
                 }
             }
         }
