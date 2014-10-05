@@ -9,6 +9,11 @@ namespace _1DV402.S2.L2C
     class Program
     {
         private static string HorizontalLine = "═══════════════════════════════════════════════════════════════════════════════";
+
+        /// <summary>
+        /// The core of the test program
+        /// </summary>
+        /// <param name="args">Command-line Arguments</param>
         static void Main(string[] args)
         {
             //Test 1
@@ -85,6 +90,12 @@ namespace _1DV402.S2.L2C
             test = new AlarmClock("7:07", new[] { "7:09", "7:11", "7:14" });
             Run(test, 8);
         }
+
+        /// <summary>
+        /// Engine of the clock. Makes calls to AlarmClock.cs to run the clock. Only uses a simulation of minutes and not real minutes.
+        /// </summary>
+        /// <param name="ac">AlarmClock object containing the times and alarmtimes the clock should start with.</param>
+        /// <param name="minutes">An interger of the number of minutes the clock should run.</param>
         private static void Run(AlarmClock ac, int minutes)
         {
             Console.BackgroundColor = ConsoleColor.DarkRed;
@@ -123,6 +134,11 @@ namespace _1DV402.S2.L2C
                 minute++;
             } while (minute < minutes);
         }
+
+        /// <summary>
+        /// Displays a error message with red background and white text
+        /// </summary>
+        /// <param name="message">The message to be displayed.</param>
         private static void ViewErrorMessage(string message)
         {
             Console.BackgroundColor = ConsoleColor.Red;
@@ -130,6 +146,11 @@ namespace _1DV402.S2.L2C
             Console.WriteLine(message);
             Console.ResetColor();
         }
+
+        /// <summary>
+        /// Displays a header with a specified header message
+        /// </summary>
+        /// <param name="header"The header message to be displayed></param>
         private static void ViewTestHeader(string header)
         {
             Console.ForegroundColor = ConsoleColor.White;
